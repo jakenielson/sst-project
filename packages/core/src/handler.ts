@@ -1,4 +1,4 @@
-import { Context, APIGatewayProxyEvent } from "aws-lambda";
+import { Context, APIGatewayProxyEvent } from 'aws-lambda'
 
 export default function handler(
   lambda: (evt: APIGatewayProxyEvent, context: Context) => Promise<string>
@@ -14,7 +14,7 @@ export default function handler(
       statusCode = 500;
       body = JSON.stringify({
         error: error instanceof Error ? error.message : String(error),
-      });
+      })
     }
 
     // Return HTTP response
@@ -22,9 +22,9 @@ export default function handler(
       body,
       statusCode,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true
       }
-    };
-  };
+    }
+  }
 }

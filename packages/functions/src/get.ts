@@ -1,6 +1,6 @@
-import { Table } from "sst/node/table";
-import handler from "@notes/core/handler";
-import dynamoDb from "@notes/core/dynamodb";
+import { Table } from 'sst/node/table';
+import handler from '@notes/core/handler'
+import dynamoDb from '@notes/core/dynamodb'
 
 export const main = handler(async (event) => {
   const params = {
@@ -11,13 +11,13 @@ export const main = handler(async (event) => {
       userId: event.requestContext.authorizer?.iam.cognitoIdentity.identityId,
       noteId: event?.pathParameters?.id, // The id of the note from the path
     },
-  };
+  }
 
   const result = await dynamoDb.get(params);
   if (!result.Item) {
-    throw new Error("Item not found.");
+    throw new Error('Item not found.')
   }
 
   // Return the retrieved item
-  return JSON.stringify(result.Item);
-});
+  return JSON.stringify(result.Item)
+})

@@ -1,12 +1,12 @@
-import * as uuid from "uuid";
-import { Table } from "sst/node/table";
-import handler from "@notes/core/handler";
-import dynamoDb from "@notes/core/dynamodb";
+import * as uuid from 'uuid'
+import { Table } from 'sst/node/table'
+import handler from '@notes/core/handler'
+import dynamoDb from '@notes/core/dynamodb'
 
 export const main = handler(async (event) => {
   let data = {
-    content: "",
-    attachment: "",
+    content: '',
+    attachment: '',
   };
 
   if (event.body != null) {
@@ -23,9 +23,9 @@ export const main = handler(async (event) => {
       attachment: data.attachment, // Parsed from request body
       createdAt: Date.now(), // Current Unix timestamp
     },
-  };
+  }
 
   await dynamoDb.put(params);
 
   return JSON.stringify(params.Item);
-});
+})

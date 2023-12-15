@@ -1,6 +1,6 @@
-import { Table } from "sst/node/table";
-import handler from "@notes/core/handler";
-import dynamoDb from "@notes/core/dynamodb";
+import { Table } from 'sst/node/table'
+import handler from '@notes/core/handler'
+import dynamoDb from '@notes/core/dynamodb'
 
 export const main = handler(async (event) => {
   const params = {
@@ -9,9 +9,9 @@ export const main = handler(async (event) => {
       userId: event.requestContext.authorizer?.iam.cognitoIdentity.identityId,
       noteId: event?.pathParameters?.id, // The id of the note from the path
     },
-  };
+  }
 
-  await dynamoDb.delete(params);
+  await dynamoDb.delete(params)
 
-  return JSON.stringify({ status: true });
-});
+  return JSON.stringify({ status: true })
+})
